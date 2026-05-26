@@ -161,38 +161,54 @@ Para asegurar que los servicios web inicien de manera persistente con el sistema
 Unidad para NGINX (/etc/systemd/system/nginx.service)
 --------------------------------------------------
 [Unit]
+
 Description=The NGINX HTTP and reverse proxy server
+
 After=network.target remote-fs.target nss-lookup.target
 
 [Service]
+
 Type=forking
+
 PIDFile=/srv/nginx/logs/nginx.pid
+
 ExecStartPre=/srv/nginx/sbin/nginx -t
+
 ExecStart=/srv/nginx/sbin/nginx
+
 ExecReload=/srv/nginx/sbin/nginx -s reload
+
 ExecStop=/bin/kill -s QUIT $MAINPID
+
 PrivateTmp=true
 
 [Install]
-WantedBy=multi-user.target graphical.target
---------------------------------------------------
+WantedBy=multi.user.target graphical.target
 
 Unidad para PHP-FPM (/etc/systemd/system/php-fpm8.4.service)
 --------------------------------------------------
 [Unit]
+
 Description=The PHP 8.4 FastCGI Process Manager
+
 After=network.target
 
 [Service]
+
 Type=simple
+
 PIDFile=/srv/nginx/var/run/php-fpm.pid
+
 ExecStart=/srv/nginx/sbin/php-fpm --nodaemonize --fpm-config /srv/nginx/etc/php-fpm.conf
+
 ExecReload=/bin/kill -USR2 $MAINPID
+
 PrivateTmp=false
 
 [Install]
+
 WantedBy=multi-user.target graphical.target
---------------------------------------------------
+
 
 Habilitación y Arranque en Consola:
 
