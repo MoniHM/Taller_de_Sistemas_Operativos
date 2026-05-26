@@ -183,6 +183,7 @@ ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
 
 [Install]
+
 WantedBy=multi.user.target graphical.target
 
 Unidad para PHP-FPM (/etc/systemd/system/php-fpm8.4.service)
@@ -210,7 +211,8 @@ PrivateTmp=false
 WantedBy=multi-user.target graphical.target
 
 
-Habilitación y Arranque en Consola:
+#Habilitación y Arranque en Consola:
+--------------------------------------------------
 
 $ sudo systemctl daemon-reload
 
