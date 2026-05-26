@@ -1,7 +1,10 @@
 # Taller_de_Sistemas_Operativos
 Institución: Tecnológico de Estudios Superiores de Oriente del Estado de México
+
 Asignatura: Taller de Sistemas Operativos
+
 Proyecto: Implementación e Integración de Servidores NGINX 1.31.x y PHP 8.4.x mediante Compilación Nativa y Sockets Unix
+
 Fecha: 26 de mayo 2026
 
 INTEGRANTES DEL EQUIPO:
