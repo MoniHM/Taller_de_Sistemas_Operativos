@@ -29,35 +29,42 @@ Instalar, configurar y desplegar un entorno de servidor web compuesto por NGINX 
 3. DESARROLLO DEL PROYECTO
 
 
-3.1. Fase 1: Preparación del Sistema y Dependencias de Compilación
+3.1: Preparación del Sistema y Dependencias de Compilación
 En la distribución AlmaLinux, es necesario activar el grupo de herramientas de desarrollo y los repositorios EPEL para poder resolver de forma nativa las bibliotecas de desarrollo requeridas:
 
 Comandos de consola:
+
 $ sudo dnf install -y epel-release
+
 $ sudo dnf groupinstall -y "Development Tools"
+
 $ sudo dnf install -y pcre-devel zlib-devel openssl-devel libxml2-devel sqlite-devel libcurl-devel libpng-devel libjpeg-turbo-devel libwebp-devel freetype-devel oniguruma-devel libicu-devel pkgconfig
 
-3.2. Fase 2: Configuración de Usuarios y Grupos de Sistema
+3.2: Configuración de Usuarios y Grupos de Sistema
 Para mitigar la superficie de ataque y asegurar los privilegios de los procesos demonio en el sistema operativo:
 
 Comandos de consola:
 # Crear grupo y usuario del sistema para NGINX
 $ sudo groupadd --system NGINX
+
 $ sudo useradd -s /sbin/nologin --system -g NGINX NGINX
 
 # Crear usuario para PHP integrado al grupo de NGINX
 $ sudo useradd -s /sbin/nologin --system -g NGINX PHP
 
-3.3. Fase 3: Descarga, Compilación e Instalación de NGINX 1.31.x
+3.3: Descarga, Compilación e Instalación de NGINX 1.31.x
 1. Obtención y extracción del código fuente de la rama de desarrollo estable:
+   
 $ wget https://nginx.org/download/nginx-1.31.2.tar.gz
+
 $ tar -zxvf nginx-1.31.2.tar.gz
+
 $ cd nginx-1.31.2
 
-2. Configuración de parámetros de compilación con prefijo modular y asignación de propietario:
+3. Configuración de parámetros de compilación con prefijo modular y asignación de propietario:
 $ ./configure --prefix=/srv/nginx --user=NGINX --group=NGINX --with-http_ssl_module
 
-3. Ejecución de la construcción e instalación nativa:
+4. Ejecución de la construcción e instalación nativa:
 $ make
 $ sudo make install
 
